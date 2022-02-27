@@ -1,9 +1,12 @@
+import React from 'react';
+
 import './App.css';
 
-import Planets from '../Planets';
+import Planets from 'components/Planets';
+import { usePlanets } from 'api/planets';
 
 const App = () => {
-  console.log(usePlanets());
+  usePlanets();
   return (
     <div className="App">
       <h1>Star Wars Planets</h1>
