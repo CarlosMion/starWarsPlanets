@@ -1,7 +1,7 @@
 export interface IPlanets {
   count: number;
   next: string;
-  previous?: null;
+  previous?: string;
   results?: IPlanet[];
 }
 export interface IPlanet {
