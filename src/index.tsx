@@ -6,16 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import store from 'redux/store';
 import { Provider } from 'react-redux';
+import { LightTheme } from './theme';
+import { ThemeProvider } from 'styled-components';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <Router />
-      </QueryClientProvider>
-    </Provider>
+    <ThemeProvider theme={LightTheme}>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

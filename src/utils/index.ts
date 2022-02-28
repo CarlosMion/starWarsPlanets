@@ -4,7 +4,6 @@ import { IBuildPlanetsGridData } from './types';
 
 export const buildPlanetsGridData = ({
   data,
-  actions,
 }: IBuildPlanetsGridData): IGridData => {
   const { results } = data;
   const rawHeaders = Object.keys(results ? results[0] : {});
@@ -16,6 +15,5 @@ export const buildPlanetsGridData = ({
   return {
     headers: onlyValidHeaders,
     values: results ?? [],
-    actions,
   };
 };

@@ -18,7 +18,6 @@ describe('utils', () => {
     it('should build the correct object when propper data is given', () => {
       const result = buildPlanetsGridData({
         data: mockPlanetsData,
-        actions: [] as IAction[],
       });
 
       expect(result).toMatchObject({
@@ -30,7 +29,6 @@ describe('utils', () => {
     it('should return the built object but with empty data', () => {
       const result = buildPlanetsGridData({
         data: {} as IPlanets,
-        actions: [] as IAction[],
       });
 
       expect(result).toMatchObject({

@@ -6,6 +6,7 @@ export const keyToValueNamesMap = new Map<string, string>([
   ['climate', 'Climate'],
   ['gravity', 'Gravity'],
   ['terrain', 'Terrain'],
+  ['surface_water', 'Surface Water'],
   ['population', 'Population'],
 ]);
 
@@ -22,5 +23,6 @@ export const valueToKeyNamesMap = new Map<string, string>([
   ['Climate', 'climate'],
   ['Gravity', 'gravity'],
   ['Terrain', 'terrain'],
+  ['Surface Water', 'surface_water'],
   ['Population', 'population'],
 ]);
