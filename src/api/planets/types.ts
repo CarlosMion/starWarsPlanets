@@ -1,6 +1,6 @@
 export interface IPlanets {
   count: number;
-  next: string;
+  next?: string;
   previous?: string;
   results?: IPlanet[];
 }

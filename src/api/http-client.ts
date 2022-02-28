@@ -1,9 +1,5 @@
 import { CustomConfig, GetOptions } from './types';
 
-export function isResponseSuccess(statusCode: number) {
-  return statusCode >= 200 && statusCode < 300;
-}
-
 export function isResponseError(statusCode: number) {
   return statusCode >= 400;
 }

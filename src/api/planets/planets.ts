@@ -13,7 +13,7 @@ async function getPlanets() {
   if (isResponseError(result.status)) {
     throw new RequestException(result as Response);
   }
-  return result.results;
+  return result;
 }
 
 export function usePlanets() {
@@ -21,5 +21,5 @@ export function usePlanets() {
     'getPlanets',
     getPlanets
   );
-  return { data: data, error, isFetching, refetch };
+  return { data, error, isFetching, refetch };
 }
