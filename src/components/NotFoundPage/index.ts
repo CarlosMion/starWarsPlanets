@@ -1,3 +1,1 @@
-import Component from './NotFoundPage';
-
-export default Component;
+export { NotFoundPage } from './NotFoundPage';

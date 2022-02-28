@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import './App.css';
 
@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { updateData } from 'redux/slices/planets';
 import { IPlanets } from 'api/planets/types';
 
-const App = () => {
+export const App: FC = () => {
   const dispatch = useDispatch();
   const { data } = usePlanets();
 
@@ -24,5 +24,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
