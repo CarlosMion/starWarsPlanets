@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 
 import { get, isResponseError } from '../http-client';
 import { IPlanets } from './types';
+import { addActionsToAllPlanets } from './utils';
 
 async function getPlanets() {
   const endpoint = '/planets';
@@ -21,5 +22,11 @@ export function usePlanets() {
     'getPlanets',
     getPlanets
   );
-  return { data, error, isFetching, refetch };
+
+  const preProcessedData = {
+    ...data,
+    results: addActionsToAllPlanets({ planets: data?.results }),
+  };
+
+  return { data: preProcessedData, error, isFetching, refetch };
 }
