@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import './Planets.css';
 
-import Grid from '../Grid';
+import { Grid } from '../Grid';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { IGridData } from 'components/Grid/types';
 import { buildPlanetsGridData } from 'utils';
 
-export const Planets = () => {
+export const Planets: FC = () => {
   const { data: planetsData } = useSelector(
     (state: RootState) => state.planets
   );
@@ -26,10 +26,10 @@ export const Planets = () => {
       },
     },
   ];
-  const { headers, values, actions }: IGridData = buildPlanetsGridData(
-    planetsData,
-    actionss
-  );
+  const { headers, values, actions }: IGridData = buildPlanetsGridData({
+    data: planetsData,
+    actions: actionss,
+  });
   return (
     <div className="App">
       <Grid headers={headers} values={values} actions={actions} />

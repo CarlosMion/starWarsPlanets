@@ -1,17 +1,10 @@
 import React from 'react';
-import { getMapKeyByValue } from 'utils';
-import { keyToValueNamesMap, valueToKeyNamesMap } from 'utils/constants';
+import { valueToKeyNamesMap } from 'utils/constants';
 
 import './Grid.css';
 import { IGridData } from './types';
 
-function Grid({ headers, values, actions }: IGridData) {
-  console.log('>>> values', values);
-  console.log(
-    '>>>>> uai',
-    getMapKeyByValue({ map: keyToValueNamesMap, valueToBeSearched: 'climate' })
-  );
-
+export const Grid = ({ headers, values, actions }: IGridData) => {
   return (
     <table className="gridTable">
       <thead>
@@ -44,6 +37,4 @@ function Grid({ headers, values, actions }: IGridData) {
       </tbody>
     </table>
   );
-}
-
-export default Grid;
+};
