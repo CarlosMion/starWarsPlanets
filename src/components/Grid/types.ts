@@ -1,11 +1,12 @@
-export interface IAction {
-  label: string;
-  action: (row: any) => void;
-  to?: string;
+export enum GridVariants {
+  PLANETS,
+  FILMS,
+  RESIDENTS,
 }
 
 export interface IGridData {
-  headers: string[];
+  headerNames: string[];
+  headerTypes: string[];
   values: any[];
-  hasActions?: boolean;
+  variant: GridVariants;
 }

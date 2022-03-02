@@ -1,70 +1,53 @@
-import { IPlanet } from 'api/planets/types';
-import { Button } from 'components/Button';
-import { EditPlanet } from 'components/Dialogs/EditPlanet';
-import { useDialogModal } from 'hooks/useDialogModal';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { valueToKeyNamesMap } from 'utils/constants';
+import { IPlanet } from 'api/planets/types';
+import { EditPlanet } from 'components/Dialogs/EditPlanet';
+import { LoadingDots } from 'components/LoadingDots';
+import { useDialogModal } from 'hooks/useDialogModal';
 
-import './Grid.css';
-import { IAction, IGridData } from './types';
+import { GridBody } from './GridBody';
+import { GridHeader } from './GridHeader';
+import { GridVariants, IGridData } from './types';
+import { GridContainer } from './styled';
 
-export const Grid = ({ headers, values, hasActions }: IGridData) => {
+export const Grid = ({
+  headerNames,
+  headerTypes,
+  values,
+  variant,
+}: IGridData) => {
   const [EditPlanetModal, openEditPlanetModal] = useDialogModal({
     Component: EditPlanet,
   });
   const [selectedPlanet, setSelectedPlanet] = useState<IPlanet>();
 
-  const editPlanet = (planet: IPlanet) => {
+  const openEditPlanet = (planet: IPlanet) => {
     setSelectedPlanet(planet);
-    console.log('planet', planet);
     openEditPlanetModal();
   };
 
+  const isPlanet = variant === GridVariants.PLANETS;
+
   return (
     <>
-      <table className="gridTable">
-        <thead>
-          <tr>
-            {headers.map((colName) => (
-              <th key={colName}>{colName}</th>
-            ))}
-            {hasActions && <th>Actions</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {values.map((row, index) => (
-            <tr key={index}>
-              {headers.map((colName) => (
-                <td key={colName}>
-                  {row[valueToKeyNamesMap.get(colName) ?? '']}
-                </td>
-              ))}
-              {
-                <td className="gridActions">
-                  {!!row.actions.length &&
-                    row.actions.map((actionItem: IAction) => (
-                      <>
-                        {actionItem && (
-                          <Button
-                            key={actionItem.label}
-                            onClick={() => actionItem.action(row)}
-                            to={actionItem.to}
-                            as={actionItem.to ? Link : undefined}
-                          >
-                            {actionItem.label}
-                          </Button>
-                        )}
-                      </>
-                    ))}
-                  <Button onClick={() => editPlanet(row)}>Edit</Button>
-                </td>
-              }
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <EditPlanetModal planet={selectedPlanet} />
+      {!headerNames.length ? (
+        <LoadingDots />
+      ) : (
+        <GridContainer>
+          <GridHeader
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            showActions={isPlanet}
+          />
+          <GridBody
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            values={values}
+            variant={variant}
+            openEditPlanet={openEditPlanet}
+          />
+        </GridContainer>
+      )}
+      {isPlanet && <EditPlanetModal planet={selectedPlanet} />}
     </>
   );
 };
