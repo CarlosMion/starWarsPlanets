@@ -1,15 +1,18 @@
 import React from 'react';
+
+import { ThemeProvider } from 'styled-components';
 import ReactDOM from 'react-dom';
 import store from 'redux/store';
 import { Provider } from 'react-redux';
-import { LightTheme } from './theme';
-import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import { LightTheme } from './theme';
 import reportWebVitals from './reportWebVitals';
 
-import './index.css';
 import { App } from 'App';
+import ErrorBoundary from 'ErrorBoundary';
+
+import './index.css';
 
 const queryClient = new QueryClient();
 
@@ -18,7 +21,9 @@ ReactDOM.render(
     <ThemeProvider theme={LightTheme}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </QueryClientProvider>
       </Provider>
     </ThemeProvider>

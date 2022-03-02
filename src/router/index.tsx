@@ -3,8 +3,7 @@ import React, { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { PlanetDetails } from 'pages/PlanetDetails';
-import { App } from 'App';
-import { NotFoundPage } from 'components/NotFoundPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 import { PlanetFilms } from 'pages/PlanetFilms';
 import { PlanetResidents } from 'pages/PlanetResidents';
 import { Planets } from 'pages/Planets';
