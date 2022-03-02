@@ -9,15 +9,14 @@ export const PLANET_EDIT_INDEX = 2;
 export const defaultPlanetActions = [
   {
     label: 'Films',
-    action: (row: any) => {
-      console.log(`redirect to grid with ${row.films.length} Films`);
-    },
+    action: null,
+    to: (row: IPlanet) => `${routes.details}/${row.name}${routes.planetFilms}`,
   },
   {
     label: 'Residents',
-    action: (row: any) => {
-      console.log(`redirect to grid with ${row.residents.length} Residents`);
-    },
+    action: null,
+    to: (row: IPlanet) =>
+      `${routes.details}/${row.name}${routes.planetResidents}`,
   },
 ];
 

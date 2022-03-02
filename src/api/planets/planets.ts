@@ -6,7 +6,7 @@ import { IPlanets } from './types';
 import { addActionsToAllPlanets } from './utils';
 
 async function getPlanets() {
-  const endpoint = '/planets';
+  const endpoint = 'https://swapi.dev/api/planets';
 
   const result = await get({
     endpoint,
