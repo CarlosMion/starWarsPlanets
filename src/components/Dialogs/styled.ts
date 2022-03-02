@@ -38,6 +38,7 @@ export const ModalContainer = styled(DialogOverlay)`
   justify-content: center;
   align-content: center;
   [data-reach-dialog-content] {
+    width: 50vw;
     background: white;
     border-radius: 8px;
     position: relative;
@@ -47,6 +48,7 @@ export const ModalContainer = styled(DialogOverlay)`
 
 export const InnerContent = styled.div`
   padding: 3rem 3rem 1.5rem 3rem;
+
   max-width: 90vw;
 `;
 

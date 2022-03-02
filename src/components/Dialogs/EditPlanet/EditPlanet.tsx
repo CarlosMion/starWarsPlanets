@@ -1,7 +1,7 @@
-import { Button } from 'components/Button';
+import React, { FC, Suspense } from 'react';
+
 import Dialog from 'components/Dialogs';
 import { PlanetForm } from 'components/Forms/PlanetForm';
-import React, { FC } from 'react';
 import { IEditPlanet } from './types';
 
 export const EditPlanet: FC<IEditPlanet> = ({
@@ -10,10 +10,12 @@ export const EditPlanet: FC<IEditPlanet> = ({
   onConfirm,
 }) => {
   return (
-    <Dialog
-      heading={planet.name}
-      body={<PlanetForm onConfirmForm={onConfirm} />}
-      onDismiss={onDismiss}
-    />
+    <Suspense fallback={null}>
+      <Dialog
+        heading={planet.name}
+        body={<PlanetForm onConfirmForm={onConfirm} />}
+        onDismiss={onDismiss}
+      />
+    </Suspense>
   );
 };

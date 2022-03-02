@@ -16,7 +16,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   display: flex;
   flex-direction: row;
   border-radius: 4px;
-  text-decoration: none;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const Label = styled.span<Props>`

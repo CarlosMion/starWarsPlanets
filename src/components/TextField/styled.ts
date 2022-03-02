@@ -52,8 +52,7 @@ export const StyledInput = styled.input<IInputProps>`
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.iron};
   font-size: 16px;
-  padding-right: 42px;
-  padding-left: 16px;
+  margin: 8px;
   display: block;
   width: 100%;
   border-radius: 4px;
@@ -81,10 +80,10 @@ export const ErrorWrapper = styled.div`
   min-height: 16px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ error?: string }>`
   position: absolute;
-  right: 12px;
-  top: 38px;
+  right: 10px;
+  top: 64px;
   background: transparent;
   border: none;
   width: 24px;

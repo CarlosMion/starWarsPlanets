@@ -1,5 +1,7 @@
-import { Button } from 'components/Button';
 import styled from 'styled-components';
+import { Dropdown } from 'react-dropdown-now';
+
+import { Button } from 'components/Button';
 
 export const Form = styled.form`
   display: flex;
@@ -10,4 +12,13 @@ export const Form = styled.form`
 
 export const RegisterButton = styled(Button)`
   margin-top: 24px;
+`;
+
+export const FullWidthDropdown = styled(Dropdown)`
+  width: 100%;
+  margin: 8px;
+
+  span {
+    width: 2px;
+  }
 `;
