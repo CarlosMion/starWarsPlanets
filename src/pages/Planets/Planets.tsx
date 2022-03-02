@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 
-import './Planets.css';
-
-import { Grid } from '../../components/Grid';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+
+import { Grid } from 'components/Grid';
 import { IGridData } from 'components/Grid/types';
 import { buildPlanetsGridData } from 'utils';
+
+import { Container, Title } from './styled';
+import { LoadingDots } from 'components/LoadingDots';
 
 export const Planets: FC = () => {
   const planetsData = useSelector(
@@ -19,14 +21,18 @@ export const Planets: FC = () => {
     });
 
   return (
-    <div className="App">
-      <h1>Star Wars Planets</h1>
-      <Grid
-        headerNames={headerNames}
-        headerTypes={headerTypes}
-        values={values}
-        variant={variant}
-      />
-    </div>
+    <Container>
+      <Title>Star Wars Planets</Title>
+      {!planetsData?.length ? (
+        <LoadingDots />
+      ) : (
+        <Grid
+          headerNames={headerNames}
+          headerTypes={headerTypes}
+          values={values}
+          variant={variant}
+        />
+      )}
+    </Container>
   );
 };

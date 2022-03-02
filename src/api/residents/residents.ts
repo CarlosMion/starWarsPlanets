@@ -20,8 +20,9 @@ async function getResident({ endpoint }: IResidentVariables) {
 }
 
 export function useResident({ endpoint }: IResidentVariables) {
-  const { data, isLoading } = useQuery<IResident>('planet_resident', () =>
-    getResident({ endpoint })
+  const { data, isLoading } = useQuery<IResident>(
+    `planet_resident${endpoint}`,
+    () => getResident({ endpoint })
   );
   return { resident: data, isLoading };
 }

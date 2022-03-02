@@ -1,8 +1,11 @@
-import { IPlanet } from 'api/planets/types';
-import React, { useMemo } from 'react';
-import { GridVariants } from '../types';
+import React, { ReactElement, useMemo } from 'react';
 
-import { AlignableCell } from './styled';
+import { GridVariants } from 'components/Grid/types';
+import { FilmValue } from './components/Film';
+import { PlanetValue } from './components/Planet';
+import { PlanetDetailsValue } from './components/PlanetDetails';
+import { ResidentValue } from './components/Resident';
+
 import { IGridBodyValue } from './types';
 
 export const GridBodyValue = ({
@@ -11,31 +14,46 @@ export const GridBodyValue = ({
   value,
   variant,
 }: IGridBodyValue) => {
-  const dataObject: any = useMemo(() => {
+  const component: ReactElement = useMemo(() => {
     switch (variant) {
       case GridVariants.PLANETS:
-        return {
-          ...value,
-        } as IPlanet;
-      case GridVariants.FILMS:
-        return {
-          shadow: '4',
-          variant: 'solid-reversed',
-        };
-      case GridVariants.RESIDENTS:
-        return {};
-      default:
-        return {};
-    }
-  }, [value, variant]);
+        return (
+          <PlanetValue
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            value={value}
+          />
+        );
 
-  return (
-    <>
-      {headerNames.map((colName, index) => (
-        <AlignableCell key={colName} type={headerTypes[index]}>
-          {dataObject[colName]}
-        </AlignableCell>
-      ))}
-    </>
-  );
+      case GridVariants.FILMS:
+        return (
+          <FilmValue
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            value={value}
+          />
+        );
+      case GridVariants.RESIDENTS:
+        return (
+          <ResidentValue
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            value={value}
+          />
+        );
+      case GridVariants.PLANET_DETAILS:
+        console.log(value);
+        return (
+          <PlanetDetailsValue
+            headerNames={headerNames}
+            headerTypes={headerTypes}
+            value={value}
+          />
+        );
+      default:
+        return <></>;
+    }
+  }, [headerNames, headerTypes, value, variant]);
+
+  return component;
 };

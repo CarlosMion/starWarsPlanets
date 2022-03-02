@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from './router';
-import reportWebVitals from './reportWebVitals';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import store from 'redux/store';
 import { Provider } from 'react-redux';
 import { LightTheme } from './theme';
 import { ThemeProvider } from 'styled-components';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import reportWebVitals from './reportWebVitals';
+
 import './index.css';
+import { App } from 'App';
 
 const queryClient = new QueryClient();
 
@@ -16,7 +18,7 @@ ReactDOM.render(
     <ThemeProvider theme={LightTheme}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <Router />
+          <App />
         </QueryClientProvider>
       </Provider>
     </ThemeProvider>

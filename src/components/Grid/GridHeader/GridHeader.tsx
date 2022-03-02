@@ -1,22 +1,35 @@
 import React from 'react';
 
+import { humanizeText, isPlanetAllowedProp, isUnwantedProp } from 'utils';
+
 import { HeaderCell, HeaderContainer, HeaderRow } from './styled';
 import { IGridHeader } from './types';
 
 export const GridHeader = ({
   headerNames,
   headerTypes,
-  showActions = false,
+  isPlanet = false,
 }: IGridHeader) => {
   return (
     <HeaderContainer>
       <HeaderRow>
         {headerNames.map((colName, index) => (
-          <HeaderCell
-            key={colName}
-          >{`${colName}(${headerTypes[index]})`}</HeaderCell>
+          <>
+            {!isUnwantedProp(colName) ? (
+              <HeaderCell key={colName}>{`${humanizeText(colName)}(${
+                headerTypes[index]
+              })`}</HeaderCell>
+            ) : (
+              <>
+                {isPlanet && isPlanetAllowedProp(colName) && (
+                  <HeaderCell key={colName}>{`${humanizeText(
+                    colName
+                  )}`}</HeaderCell>
+                )}
+              </>
+            )}
+          </>
         ))}
-        {showActions && <th>Actions</th>}
       </HeaderRow>
     </HeaderContainer>
   );

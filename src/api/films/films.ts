@@ -20,7 +20,7 @@ async function getFilm({ endpoint }: IFilmVariables) {
 }
 
 export function useFilm({ endpoint }: IFilmVariables) {
-  const { data, isLoading } = useQuery<IFilm>('planet_film', () =>
+  const { data, isLoading } = useQuery<IFilm>(`planet_film${endpoint}`, () =>
     getFilm({ endpoint })
   );
   return { film: data, isLoading };

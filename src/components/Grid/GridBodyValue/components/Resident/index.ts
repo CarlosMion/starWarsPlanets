@@ -1,0 +1,1 @@
+export { ResidentValue } from './ResidentValue';

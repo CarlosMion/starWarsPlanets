@@ -18,7 +18,7 @@ async function getPlanets() {
 }
 
 export function usePlanets() {
-  const { data, error, isFetching, refetch } = useQuery<IPlanets>(
+  const { data, error, isLoading, refetch } = useQuery<IPlanets>(
     'getPlanets',
     getPlanets
   );
@@ -28,5 +28,5 @@ export function usePlanets() {
     results: addActionsToAllPlanets({ planets: data?.results }),
   };
 
-  return { data: preProcessedData, error, isFetching, refetch };
+  return { data: preProcessedData, error, isLoading, refetch };
 }

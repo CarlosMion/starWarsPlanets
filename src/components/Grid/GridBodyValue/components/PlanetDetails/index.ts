@@ -1,0 +1,1 @@
+export { PlanetDetailsValue } from './PlanetDetailsValue';

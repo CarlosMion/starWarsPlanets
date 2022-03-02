@@ -7,6 +7,7 @@ import {
   IBuildPlanetsGridData,
   IBuildPlanetResidentsData,
   IGetPlanetData,
+  IBuildPlanetDetailsData,
 } from './types';
 
 const getActualTypeForValue = (potentialNumber: string) => {
@@ -58,23 +59,67 @@ export const getPlanetData = ({
 export const buildPlanetFilmsData = ({
   film,
   filmEndpoints,
-}: IBuildPlanetFilmsData): IGridData => {
-  return {
-    headerNames: getHeaderNames(film),
-    headerTypes: getHeaderTypes(film),
-    values: filmEndpoints ?? [],
-    variant: GridVariants.FILMS,
-  };
-};
+}: IBuildPlanetFilmsData): IGridData => ({
+  headerNames: getHeaderNames(film),
+  headerTypes: getHeaderTypes(film),
+  values: filmEndpoints ?? [],
+  variant: GridVariants.FILMS,
+});
 
 export const buildPlanetResidentsData = ({
   resident,
   residentEndpoints,
-}: IBuildPlanetResidentsData): IGridData => {
+}: IBuildPlanetResidentsData): IGridData => ({
+  headerNames: getHeaderNames(resident),
+  headerTypes: getHeaderTypes(resident),
+  values: residentEndpoints ?? [],
+  variant: GridVariants.RESIDENTS,
+});
+
+export const buildPlanetDetailsData = ({
+  currentPlanet,
+}: IBuildPlanetDetailsData): IGridData => {
   return {
-    headerNames: getHeaderNames(resident),
-    headerTypes: getHeaderTypes(resident),
-    values: residentEndpoints ?? [],
-    variant: GridVariants.RESIDENTS,
+    headerNames: getHeaderNames(currentPlanet),
+    headerTypes: getHeaderTypes(currentPlanet),
+    values: [currentPlanet],
+    variant: GridVariants.PLANET_DETAILS,
   };
+};
+
+export const humanizeText = (text: string) => {
+  const fragments = text.split('_');
+
+  const capitalizedFragments = fragments.map(
+    (fragment) => fragment.charAt(0).toUpperCase() + fragment.slice(1)
+  );
+
+  return capitalizedFragments.join(' ');
+};
+
+export const isUnwantedProp = (prop: string) => {
+  const unwantedProps = [
+    'ok',
+    'redirected',
+    'status',
+    'statusText',
+    'type',
+    'url',
+    'characters',
+    'planets',
+    'starships',
+    'vehicles',
+    'species',
+    'created',
+    'edited',
+    'residents',
+    'films',
+    'actions',
+  ];
+  return unwantedProps.includes(prop);
+};
+
+export const isPlanetAllowedProp = (prop: string) => {
+  const allowedProps = ['residents', 'films', 'actions'];
+  return allowedProps.includes(prop);
 };

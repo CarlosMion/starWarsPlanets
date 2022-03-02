@@ -1,4 +1,4 @@
-import { IAction } from 'components/Grid/types';
+import { IAction } from 'components/Grid/GridBody/types';
 
 export interface IPlanets {
   count?: number;

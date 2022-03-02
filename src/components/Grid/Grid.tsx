@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { IPlanet } from 'api/planets/types';
 import { EditPlanet } from 'components/Dialogs/EditPlanet';
 import { LoadingDots } from 'components/LoadingDots';
@@ -36,7 +37,7 @@ export const Grid = ({
           <GridHeader
             headerNames={headerNames}
             headerTypes={headerTypes}
-            showActions={isPlanet}
+            isPlanet={isPlanet}
           />
           <GridBody
             headerNames={headerNames}

@@ -9,11 +9,20 @@ import { IPlanetInfoForm, IPlanetForm } from './types';
 import { showToast } from 'components/Toast';
 import { REQUIRED_FIELD_ERROR, terrainDropdownOptions } from './constants';
 import { Form, FullWidthDropdown, RegisterButton } from './styled';
-import { planetKeyToValueNamesMap } from 'utils/constants';
 
 export function PlanetForm({ onConfirmForm }: IPlanetForm) {
   const [isLoading, setIsLoading] = useState(false);
-  const [planetInfo, setPlanetInfo] = useState();
+  const initialPlanetInfo = {
+    name: '',
+    rotation_period: 0,
+    orbital_period: 0,
+    diameter: 0,
+    climate: '',
+    gravity: '',
+    terrain: '',
+    surface_water: 0,
+  };
+  const [planetInfo, setPlanetInfo] = useState(initialPlanetInfo);
 
   const EditPlanetSchema: any = Yup.object().shape({
     name: Yup.string().required(REQUIRED_FIELD_ERROR),
@@ -28,14 +37,7 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      rotation_period: 0,
-      orbital_period: 0,
-      diameter: 0,
-      climate: '',
-      gravity: '',
-      terrain: '',
-      surface_water: 0,
+      ...initialPlanetInfo,
     },
     validationSchema: EditPlanetSchema,
     onSubmit: async () => {
@@ -74,12 +76,12 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
       <TextField
         error={formik.touched.name ? formik.errors.name : ''}
         id="name"
-        label={planetKeyToValueNamesMap.get('name')}
+        label="Name"
         name="name"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('name', '')}
-        placeholder={planetKeyToValueNamesMap.get('name')}
+        placeholder="Name"
         value={formik.values.name}
       />
       <TextField
@@ -87,12 +89,12 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
           formik.touched.rotation_period ? formik.errors.rotation_period : ''
         }
         id="rotation_period"
-        label={planetKeyToValueNamesMap.get('rotation_period')}
+        label="Rotation Period"
         name="rotation_period"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('rotation_period', '')}
-        placeholder={planetKeyToValueNamesMap.get('rotation_period')}
+        placeholder="Rotation Period"
         value={formik.values.rotation_period}
       />
       <TextField
@@ -100,49 +102,49 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
           formik.touched.orbital_period ? formik.errors.orbital_period : ''
         }
         id="orbital_period"
-        label={planetKeyToValueNamesMap.get('orbital_period')}
+        label="Orbital Period"
         name="orbital_period"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('orbital_period', '')}
-        placeholder={planetKeyToValueNamesMap.get('orbital_period')}
+        placeholder="Orbital Period"
         value={formik.values.orbital_period}
       />
       <TextField
         error={formik.touched.diameter ? formik.errors.diameter : ''}
         id="diameter"
-        label={planetKeyToValueNamesMap.get('diameter')}
+        label="Diameter"
         name="diameter"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('diameter', '')}
-        placeholder={planetKeyToValueNamesMap.get('diameter')}
+        placeholder="Diameter"
         value={formik.values.diameter}
       />
       <TextField
         error={formik.touched.climate ? formik.errors.climate : ''}
         id="climate"
-        label={planetKeyToValueNamesMap.get('climate')}
+        label="Climate"
         name="climate"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('climate', '')}
-        placeholder={planetKeyToValueNamesMap.get('climate')}
+        placeholder="Climate"
         value={formik.values.climate}
       />
       <TextField
         error={formik.touched.gravity ? formik.errors.gravity : ''}
         id="gravity"
-        label={planetKeyToValueNamesMap.get('gravity')}
+        label="Gravity"
         name="gravity"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('gravity', '')}
-        placeholder={planetKeyToValueNamesMap.get('gravity')}
+        placeholder="Gravity"
         value={formik.values.gravity}
       />
       <FullWidthDropdown
-        placeholder={planetKeyToValueNamesMap.get('terrain')}
+        placeholder="Terrain"
         options={terrainDropdownOptions}
         value="terrain"
         onSelect={(value) => formik.setFieldValue('terrain', value)}
@@ -150,12 +152,12 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
       <TextField
         error={formik.touched.surface_water ? formik.errors.surface_water : ''}
         id="surface_water"
-        label={planetKeyToValueNamesMap.get('surface_water')}
+        label="Surface Water"
         name="surface_water"
         onBlur={formik.handleBlur}
         onChange={formik.handleChange}
         onClear={() => formik.setFieldValue('surface_water', '')}
-        placeholder={planetKeyToValueNamesMap.get('surface_water')}
+        placeholder="Surface Water"
         value={formik.values.surface_water}
       />
       <RegisterButton type="submit" isLoading={isLoading}>

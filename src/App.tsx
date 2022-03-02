@@ -1,13 +1,20 @@
 import React, { FC } from 'react';
 
-import './App.css';
+import { Router } from './router';
 
-import { Planets } from 'pages/Planets';
-import { usePlanets } from 'api/planets';
 import { useDispatch } from 'react-redux';
+import { usePlanets } from 'api/planets';
 import { updateData } from 'redux/slices/planets';
 import { IPlanets } from 'api/planets/types';
 
 export const App: FC = () => {
-  return <div className="App">{<Planets />}</div>;
+  const dispatch = useDispatch();
+  const { data, isLoading } = usePlanets();
+
+  const dispatchUpdate = (data?: IPlanets) =>
+    data && dispatch(updateData(data));
+
+  dispatchUpdate(data);
+
+  return <>{!isLoading && <Router />}</>;
 };

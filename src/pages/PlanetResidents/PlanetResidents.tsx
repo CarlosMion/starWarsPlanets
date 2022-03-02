@@ -7,6 +7,8 @@ import { buildPlanetResidentsData, getPlanetData } from 'utils';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { useResident } from 'api/residents';
+import { LoadingDots } from 'components/LoadingDots';
+import { Title } from 'pages/Planets/styled';
 
 export const PlanetResidents = () => {
   const { planetName } = useParams<{
@@ -27,7 +29,7 @@ export const PlanetResidents = () => {
     endpoint: planetResidents && planetResidents[0],
   });
 
-  const { headerNames, headerTypes, values, isPlanet }: IGridData =
+  const { headerNames, headerTypes, values, variant }: IGridData =
     buildPlanetResidentsData({
       resident,
       residentEndpoints: planetResidents,
@@ -35,15 +37,15 @@ export const PlanetResidents = () => {
 
   return (
     <div className="App">
-      <h1>{`Planet ${planetName} Residents`}</h1>
+      <Title>{`Planet ${planetName} Residents`}</Title>
       {isLoading ? (
-        <>LOADING</>
+        <LoadingDots />
       ) : (
         <Grid
           headerNames={headerNames}
           headerTypes={headerTypes}
           values={values}
-          isPlanet={isPlanet}
+          variant={variant}
         />
       )}
     </div>

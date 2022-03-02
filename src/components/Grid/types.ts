@@ -2,6 +2,7 @@ export enum GridVariants {
   PLANETS,
   FILMS,
   RESIDENTS,
+  PLANET_DETAILS,
 }
 
 export interface IGridData {

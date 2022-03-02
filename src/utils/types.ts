@@ -20,3 +20,7 @@ export interface IBuildPlanetResidentsData {
   resident?: IResident;
   residentEndpoints?: string[];
 }
+
+export interface IBuildPlanetDetailsData {
+  currentPlanet?: IPlanet;
+}

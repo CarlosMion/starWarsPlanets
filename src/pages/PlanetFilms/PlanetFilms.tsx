@@ -7,6 +7,8 @@ import { buildPlanetFilmsData, getPlanetData } from 'utils';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { useFilm } from 'api/films';
+import { LoadingDots } from 'components/LoadingDots';
+import { Title } from 'pages/Planets/styled';
 
 export const PlanetFilms = () => {
   const { planetName } = useParams<{
@@ -28,7 +30,7 @@ export const PlanetFilms = () => {
     endpoint: planetFilms && planetFilms[0],
   });
 
-  const { headerNames, headerTypes, values, isPlanet }: IGridData =
+  const { headerNames, headerTypes, values, variant }: IGridData =
     buildPlanetFilmsData({
       film,
       filmEndpoints: planetFilms,
@@ -36,15 +38,15 @@ export const PlanetFilms = () => {
 
   return (
     <div className="App">
-      <h1>{`Planet ${planetName} Films`}</h1>
+      <Title>{`Planet ${planetName} Films`}</Title>
       {isLoading ? (
-        <>LOADING</>
+        <LoadingDots />
       ) : (
         <Grid
           headerNames={headerNames}
           headerTypes={headerTypes}
           values={values}
-          isPlanet={isPlanet}
+          variant={variant}
         />
       )}
     </div>

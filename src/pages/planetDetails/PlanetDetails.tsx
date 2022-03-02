@@ -1,40 +1,41 @@
 import React from 'react';
 
-import { Grid } from 'components/Grid';
 import { useParams } from 'react-router-dom';
-import { IGridData } from 'components/Grid/types';
-import { buildPlanetsGridData } from 'utils';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
+
+import { Grid } from 'components/Grid';
+import { IGridData } from 'components/Grid/types';
+import { buildPlanetDetailsData, getPlanetData } from 'utils';
+import { Title } from 'pages/Planets/styled';
 
 export const PlanetDetails = () => {
   const { planetName } = useParams<{
     planetName: string;
   }>();
 
-  const { data: planetsData } = useSelector(
-    (state: RootState) => state.planets
+  const planetsData = useSelector(
+    (state: RootState) => state.planets.data.results
   );
 
-  const {
-    headerNames,
-    validRawHeaders,
-    headerTypes,
-    values,
-    isPlanet,
-  }: IGridData = buildPlanetsGridData({
+  const currentPlanet = getPlanetData({
     data: planetsData,
+    planetName: planetName ?? '',
   });
+
+  const { headerNames, headerTypes, values, variant }: IGridData =
+    buildPlanetDetailsData({
+      currentPlanet,
+    });
 
   return (
     <div className="App">
-      <h1>{`Planet ${planetName} Details`}</h1>
+      <Title>{`Planet ${planetName} Details`}</Title>
       <Grid
         headerNames={headerNames}
-        validRawHeaders={validRawHeaders}
         headerTypes={headerTypes}
         values={values}
-        isPlanet={isPlanet}
+        variant={variant}
       />
     </div>
   );
