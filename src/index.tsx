@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { Router } from './router';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -8,6 +7,7 @@ import store from 'redux/store';
 import { Provider } from 'react-redux';
 import { LightTheme } from './theme';
 import { ThemeProvider } from 'styled-components';
+import './index.css';
 
 const queryClient = new QueryClient();
 
