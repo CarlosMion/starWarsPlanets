@@ -24,26 +24,23 @@ export async function client(
     },
     ...customConfig,
   };
-
-  return window
-    .fetch(`https://swapi.dev/api${endpoint}`, config)
-    .then(async (response) => {
-      const responseInfo = {
-        ok: response.ok,
-        redirected: response.redirected,
-        status: response.status,
-        statusText: response.statusText,
-        type: response.type,
-        url: response.url,
+  return window.fetch(endpoint, config).then(async (response) => {
+    const responseInfo = {
+      ok: response.ok,
+      redirected: response.redirected,
+      status: response.status,
+      statusText: response.statusText,
+      type: response.type,
+      url: response.url,
+    };
+    try {
+      const data = await response.json();
+      return {
+        ...responseInfo,
+        ...data,
       };
-      try {
-        const data = await response.json();
-        return {
-          ...responseInfo,
-          ...data,
-        };
-      } catch (error) {
-        return response;
-      }
-    });
+    } catch (error) {
+      return response;
+    }
+  });
 }
