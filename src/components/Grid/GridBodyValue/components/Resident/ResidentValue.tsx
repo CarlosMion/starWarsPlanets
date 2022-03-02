@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useResident } from 'api/residents';
+import { isUnwantedProp } from 'utils';
+import { AlignableCell } from 'components/Grid/GridBody/styled';
 
 import { IResidentValue } from './types';
-import { AlignableCell } from 'components/Grid/GridBody/styled';
-import { isUnwantedProp } from 'utils';
 
 export const ResidentValue = ({
   headerNames,

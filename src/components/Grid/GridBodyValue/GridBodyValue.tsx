@@ -5,7 +5,6 @@ import { FilmValue } from './components/Film';
 import { PlanetValue } from './components/Planet';
 import { PlanetDetailsValue } from './components/PlanetDetails';
 import { ResidentValue } from './components/Resident';
-
 import { IGridBodyValue } from './types';
 
 export const GridBodyValue = ({
@@ -42,7 +41,6 @@ export const GridBodyValue = ({
           />
         );
       case GridVariants.PLANET_DETAILS:
-        console.log(value);
         return (
           <PlanetDetailsValue
             headerNames={headerNames}

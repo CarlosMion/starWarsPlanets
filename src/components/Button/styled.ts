@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Button } from 'reactstrap';
+
 import { ButtonProps, Props } from './types';
 
-export const ButtonStyled = styled.button<ButtonProps>`
-  background-color: 'gray';
+export const ButtonStyled = styled(Button)<ButtonProps>`
+  background-color: ${({ theme }) => theme.colors.cloud};
   border: none;
   padding: 0;
   margin: 0 5px;

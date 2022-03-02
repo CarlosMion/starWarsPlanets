@@ -34,6 +34,8 @@ export function showToast({
   message,
   position = 'bottom-right',
 }: ToastParams) {
+  console.log('uai');
+
   toast(
     ({ closeToast }: ToastProps) => (
       <ThemeProvider theme={LightTheme}>

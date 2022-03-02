@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -37,7 +38,6 @@ export function LoadingDots() {
       variants={loadingContainerVariants}
       initial="start"
       animate="end"
-      data-testid="loading-dots"
     >
       <Circle
         variants={loadingCircleVariants}
@@ -68,7 +68,7 @@ const Circle = styled(motion.div)`
   width: 6px;
   color: 'black';
   height: 6px;
-  background-color: black;
+  background-color: white;
   border-radius: 3px;
   background-color: ${(props) => props.theme.colors.white};
 `;

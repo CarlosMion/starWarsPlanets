@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { IPlanet } from 'api/planets/types';
 import { Button } from 'components/Button';
-import { Link } from 'react-router-dom';
 
 import { AlignableCell, BodyContainer, BodyRow } from './styled';
 import { IAction, IGridBody } from './types';

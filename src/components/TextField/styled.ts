@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { IInputProps } from './types';
 
 export const ErrorText = styled.p`
@@ -82,8 +83,8 @@ export const ErrorWrapper = styled.div`
 
 export const Button = styled.button<{ error?: string }>`
   position: absolute;
-  right: 10px;
-  top: 64px;
+  right: 4px;
+  top: 48px;
   background: transparent;
   border: none;
   width: 24px;

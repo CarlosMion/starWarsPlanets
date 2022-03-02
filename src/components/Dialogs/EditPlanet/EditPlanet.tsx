@@ -2,6 +2,7 @@ import React, { FC, Suspense } from 'react';
 
 import Dialog from 'components/Dialogs';
 import { PlanetForm } from 'components/Forms/PlanetForm';
+
 import { IEditPlanet } from './types';
 
 export const EditPlanet: FC<IEditPlanet> = ({

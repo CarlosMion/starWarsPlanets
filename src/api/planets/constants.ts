@@ -9,24 +9,21 @@ export const PLANET_EDIT_INDEX = 2;
 export const defaultPlanetActions = [
   {
     label: 'Films',
-    action: null,
     to: (row: IPlanet) => `${routes.details}/${row.name}${routes.planetFilms}`,
   },
   {
     label: 'Residents',
-    action: null,
     to: (row: IPlanet) =>
       `${routes.details}/${row.name}${routes.planetResidents}`,
+  },
+  {
+    label: 'Details',
+    to: (row: IPlanet) => `${routes.details}/${row.name}`,
   },
 ];
 
 export const planetActions = (openModal?: () => void) => [
   ...defaultPlanetActions,
-  {
-    label: 'Details',
-    action: null,
-    to: (row: IPlanet) => `${routes.details}/${row.name}`,
-  },
   {
     label: 'Edit',
     action: openModal && openModal(),

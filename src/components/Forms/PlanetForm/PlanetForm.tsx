@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
 
-import 'react-dropdown-now/style.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
 import { TextField } from 'components/TextField';
+import { showToast } from 'components/Toast';
 
 import { IPlanetInfoForm, IPlanetForm } from './types';
-import { showToast } from 'components/Toast';
 import { REQUIRED_FIELD_ERROR, terrainDropdownOptions } from './constants';
 import { Form, FullWidthDropdown, RegisterButton } from './styled';
 
+import 'react-dropdown-now/style.css';
+
 export function PlanetForm({ onConfirmForm }: IPlanetForm) {
   const [isLoading, setIsLoading] = useState(false);
-  const initialPlanetInfo = {
-    name: '',
-    rotation_period: 0,
-    orbital_period: 0,
-    diameter: 0,
-    climate: '',
-    gravity: '',
-    terrain: '',
-    surface_water: 0,
-  };
-  const [planetInfo, setPlanetInfo] = useState(initialPlanetInfo);
 
   const EditPlanetSchema: any = Yup.object().shape({
     name: Yup.string().required(REQUIRED_FIELD_ERROR),
@@ -37,22 +28,18 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
 
   const formik = useFormik({
     initialValues: {
-      ...initialPlanetInfo,
+      name: '',
+      rotation_period: 0,
+      orbital_period: 0,
+      diameter: 0,
+      climate: '',
+      gravity: '',
+      terrain: '',
+      surface_water: 0,
     },
     validationSchema: EditPlanetSchema,
     onSubmit: async () => {
       setIsLoading(true);
-      const newPlanetInfo: IPlanetInfoForm = {
-        name: formik.values.name,
-        rotation_period: formik.values.rotation_period,
-        orbital_period: formik.values.orbital_period,
-        diameter: formik.values.diameter,
-        climate: formik.values.climate,
-        gravity: formik.values.gravity,
-        terrain: formik.values.terrain,
-        surface_water: formik.values.surface_water,
-      };
-      console.log('>>> result: ', { newPlanetInfo });
 
       const showSuccess = !!Math.round(Math.random());
 
@@ -68,8 +55,6 @@ export function PlanetForm({ onConfirmForm }: IPlanetForm) {
       setIsLoading(false);
     },
   });
-
-  console.log(formik.values);
 
   return (
     <Form onSubmit={formik.handleSubmit} autoComplete="off">

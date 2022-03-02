@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
-import { IFilm, IFilmVariables } from './types';
 
-import { get, isResponseError } from '../http-client';
+import { get, isResponseError } from 'api/http-client';
 import { RequestException } from 'api/types';
+
+import { IFilm, IFilmVariables } from './types';
 
 async function getFilm({ endpoint }: IFilmVariables) {
   if (!endpoint) {

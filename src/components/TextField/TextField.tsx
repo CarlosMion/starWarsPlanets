@@ -1,5 +1,7 @@
-import { IconClose } from 'components/icons/close';
 import React, { useState, FormEvent } from 'react';
+
+import { IconClose } from 'components/icons/close';
+
 import {
   Button,
   ErrorText,
@@ -42,7 +44,7 @@ export function TextField({
   }
 
   return (
-    <Group data-testid="text-field-container">
+    <Group>
       {label && (
         <Label htmlFor={id}>
           <LabelText>{label}</LabelText>
@@ -50,7 +52,6 @@ export function TextField({
       )}
       <StyledInput
         ref={(input) => autoFocus && input && input.focus()}
-        data-testid="text-field-input"
         disabled={disabled}
         error={error}
         id={id}
@@ -68,12 +69,7 @@ export function TextField({
         {error && <ErrorText color="error">{error}</ErrorText>}
       </ErrorWrapper>
       {value !== '' && isFocused && onClear && (
-        <Button
-          data-testid="text-field-clear-button"
-          onMouseDown={onClear}
-          tabIndex={-1}
-          type="button"
-        >
+        <Button onMouseDown={onClear} tabIndex={-1} type="button">
           <IconClose size="24px" color="shadow" />
         </Button>
       )}

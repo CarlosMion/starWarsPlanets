@@ -21,7 +21,7 @@ export interface IPlanet {
   created: string;
   edited: string;
   url: string;
-  actions: IAction[];
+  actions?: IAction[];
 }
 
 export interface IAddActionsToAllPlanets {

@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 
-import { LoadingDots } from '../LoadingDots';
+import { LoadingDots } from 'components/LoadingDots';
+
 import { ButtonStyled, Label, Loading } from './styled';
 import { Props, Ref } from './types';
 
@@ -24,7 +25,6 @@ export const Button = forwardRef<Ref, Props>(function Button(
       isLoading={isLoading}
       onClick={onClick}
       type={as ? undefined : type}
-      data-testid="button"
       ref={ref}
       to={to}
       href={as === 'a' ? to : undefined}
@@ -35,7 +35,7 @@ export const Button = forwardRef<Ref, Props>(function Button(
           {children}
         </Label>
         {isLoading && (
-          <Loading data-testid="button-loader">
+          <Loading>
             <LoadingDots />
           </Loading>
         )}

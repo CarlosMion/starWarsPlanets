@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
+
 import { Grid } from 'components/Grid';
 import { useParams } from 'react-router-dom';
 import { IGridData } from 'components/Grid/types';
 import { buildPlanetResidentsData, getPlanetData } from 'utils';
-import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
 import { useResident } from 'api/residents';
 import { LoadingDots } from 'components/LoadingDots';
 import { Title } from 'pages/Planets/styled';

@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from 'react';
 
 import Dialog from 'components/Dialogs';
-import { UseDialogArgs, UseDialogHook } from './types';
 import { Button } from 'components/Button';
+
+import { UseDialogArgs, UseDialogHook } from './types';
 
 export function useDialogModal<P = {}>({
   Component,
@@ -47,11 +48,7 @@ export function useDialogModal<P = {}>({
           heading="Default Dialog Heading"
           body={body}
           onDismiss={dismissDialog}
-          actions={
-            <Button onClick={confirmDialog} data-testid="dialog-confirm-btn">
-              {buttonLabel}
-            </Button>
-          }
+          actions={<Button onClick={confirmDialog}>{buttonLabel}</Button>}
         />
       );
     },

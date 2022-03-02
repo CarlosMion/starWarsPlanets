@@ -2,6 +2,7 @@ import { RequestException } from 'api/types';
 import { useQuery } from 'react-query';
 
 import { get, isResponseError } from '../http-client';
+
 import { IPlanets } from './types';
 import { addActionsToAllPlanets } from './utils';
 
